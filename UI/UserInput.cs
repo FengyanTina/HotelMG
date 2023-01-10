@@ -160,7 +160,7 @@ public class UserInput
         }
         else if (Answer == "n")
         {
-           Console.WriteLine ("Bye!");
+            Console.WriteLine("Bye!");
         }
     }
 
@@ -177,7 +177,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception )
+        catch (Exception)
         {
             Console.WriteLine("There are no customers!");
         }
@@ -196,7 +196,7 @@ public class UserInput
                 Console.ReadKey();
             }
         }
-        catch (Exception )
+        catch (Exception)
         {
             Console.WriteLine("Customer did not exist.");
         }
@@ -695,7 +695,7 @@ public class UserInput
                 {
                     Console.WriteLine(item);
                 }
-                
+
             }
 
             receipts.Add(receipt);
@@ -711,7 +711,7 @@ public class UserInput
             Console.WriteLine("your choice does not exist!");
 
         }
-            
+
         return quit;
     }
 
@@ -740,7 +740,7 @@ public class UserInput
         Console.ReadLine();
     }
 
-     public void CustomerBookRoom(int CustomerId)
+    public void CustomerBookRoom(int CustomerId)
     {
         Console.WriteLine("Book room");
         int customerIdBooking = CustomerId;
@@ -748,7 +748,7 @@ public class UserInput
         DateTime dateIn;
         DateTime dateOut;
         BookRoomDateInDateOutInput(out dateIn, out dateOut);
-        BookRoomGetAvailableRoom(customerIdBooking, employee_id, dateIn, dateOut);  
+        BookRoomGetAvailableRoom(customerIdBooking, employee_id, dateIn, dateOut);
     }
 
     private void BookRoomGetAvailableRoom(int customerIdBooking, int employee_id, DateTime dateIn, DateTime dateOut)
@@ -782,7 +782,7 @@ public class UserInput
             }
         }
 
-        foreach (var item in  reservationManager.ShowAllReservations())
+        foreach (var item in reservationManager.ShowAllReservations())
         {
 
             if (dateIn < item.date_in)
@@ -814,7 +814,7 @@ public class UserInput
             Console.WriteLine("room nr: " + gg.room_id);
         }
         DateTime todaysDate = DateTime.Now;
-        double date_range =  reservationManager.GetTimeSpanByDates(dateIn, dateOut);
+        double date_range = reservationManager.GetTimeSpanByDates(dateIn, dateOut);
         double roomSelectedPrice = 0;
         double totalPay;
         bool reservateRoom = false;
@@ -837,8 +837,8 @@ public class UserInput
 
         if (reservateRoom == true)
         {
-            int id =reservationManager.AddReservation(customerIdBooking, employee_id, selectedRoomId, todaysDate, dateIn, dateOut, date_range, totalPay);
-            Console.WriteLine("new reservation id: " +id);//newReservationData.MakeReservation(customerIdBooking, employee_id, selectedRoomId, todaysDate, dateIn, dateOut, date_range, totalPay)
+            int id = reservationManager.AddReservation(customerIdBooking, employee_id, selectedRoomId, todaysDate, dateIn, dateOut, date_range, totalPay);
+            Console.WriteLine("new reservation id: " + id);//newReservationData.MakeReservation(customerIdBooking, employee_id, selectedRoomId, todaysDate, dateIn, dateOut, date_range, totalPay)
             Console.WriteLine($"You have booked room nr {selectedRoomId} from: {dateIn} to: {dateOut}.");// need to change booking status
             Console.WriteLine(reservationManager.SearchReservationById(id));
             Console.ReadKey();
@@ -848,7 +848,7 @@ public class UserInput
         }
     }
 
- private static void BookRoomDateInDateOutInput(out DateTime dateIn, out DateTime dateOut)
+    private static void BookRoomDateInDateOutInput(out DateTime dateIn, out DateTime dateOut)
     {
         Console.WriteLine("Enter a from-date: ");
 
@@ -941,7 +941,7 @@ public class UserInput
     {
         Console.Write(prompt);
 
-        return Console.ReadLine()!;
+        return Console.ReadLine();
     }
 
     public void NoTryMessage()
