@@ -4,7 +4,7 @@ using MySqlConnector;
 
 public class ReservationManager
 {
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new();
     ReservationData newReservationData = new();
     private TimeSpan timeSpan;
     private DateTime dateIn;

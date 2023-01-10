@@ -3,7 +3,7 @@ using MySqlConnector;
 
 public class RoomManager
 {
-    private List<Room> rooms;
+    private List<Room> rooms = new();
     RoomData newRoomData = new();
 
     public List<Room> ShowAllRooms()

@@ -27,18 +27,18 @@ public class UserInput
         }
 
         Console.WriteLine("Do you want to uppdate Reservation? Y/N");
-        string Answer = Console.ReadLine().ToLower();
+        string Answer = Console.ReadLine()!.ToLower();
 
         if (Answer == "y")
         {
             Console.WriteLine("Choose your option: [1]uppdate checking in or out date. [2]uppdate room");
-            string option = Console.ReadLine();
+            string option = Console.ReadLine()!;
             if (option == "1")
             {
                 Console.WriteLine("Enter new checkin date: ");
-                DateTime datein = DateTime.Parse(Console.ReadLine());
+                DateTime datein = DateTime.Parse(Console.ReadLine()!);
                 Console.WriteLine("Enter new checkout date: ");
-                DateTime dateout = DateTime.Parse(Console.ReadLine());
+                DateTime dateout = DateTime.Parse(Console.ReadLine()!);
                 double range = reservationManager.GetTimeSpanByDates(datein, dateout);
                 double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
                 reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
@@ -74,7 +74,7 @@ public class UserInput
     public void EmployeeCheckOutInput(int employeeId)
     {
         Console.WriteLine("Payment date: ");
-        DateTime date = DateTime.Parse(Console.ReadLine());
+        DateTime date = DateTime.Parse(Console.ReadLine()!);
         int checkOurRoomId = TryGetInt("Enter checking out room Id: ");
         int checkOutReservId = TryGetInt("Enter Reservation Id");
         roomManager.CheckOutRoomStatusRenewByRoomId(checkOurRoomId);
@@ -88,7 +88,7 @@ public class UserInput
         int addedPayId = paymentManager.AddPayment(cId, date, amount, roomPay, otherPay, rId, payname, bank);
         Console.WriteLine("Payment Id: " + addedPayId);
         Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
+        string answer = Console.ReadLine()!.ToLower();
         if (answer == "y")
         {
             Console.WriteLine("\n*********** Receipt ********\n");
@@ -129,18 +129,18 @@ public class UserInput
         }
 
         Console.WriteLine("Do you want to uppdate Reservation? Y/N");
-        string Answer = Console.ReadLine().ToLower();
+        string Answer = Console.ReadLine()!.ToLower();
 
         if (Answer == "y")
         {
             Console.WriteLine("Choose your option: [1]uppdate checking in or out date. [2]uppdate room");
-            string option = Console.ReadLine();
+            string option = Console.ReadLine()!;
             if (option == "1")
             {
                 Console.WriteLine("Enter new checkin date: ");
-                DateTime datein = DateTime.Parse(Console.ReadLine());
+                DateTime datein = DateTime.Parse(Console.ReadLine()!);
                 Console.WriteLine("Enter new checkout date: ");
-                DateTime dateout = DateTime.Parse(Console.ReadLine());
+                DateTime dateout = DateTime.Parse(Console.ReadLine()!);
                 double range = reservationManager.GetTimeSpanByDates(datein, dateout);
                 double totalPay = reservationManager.CalculatingTotalRoomPay(reservid);
                 reservationManager.UpdateReservationDate(reservid, datein, dateout, range, totalPay);
@@ -177,7 +177,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception )
         {
             Console.WriteLine("There are no customers!");
         }
@@ -196,7 +196,7 @@ public class UserInput
                 Console.ReadKey();
             }
         }
-        catch (Exception e)
+        catch (Exception )
         {
             Console.WriteLine("Customer did not exist.");
         }
@@ -302,7 +302,7 @@ public class UserInput
     {
         Console.WriteLine("\n******* Search room by Id ********\n");
         Console.WriteLine("Room Id: ");
-        int searchRoomId = int.Parse(Console.ReadLine());
+        int searchRoomId = int.Parse(Console.ReadLine()!);
         try
         {
             if (roomManager.SearchRoomById(searchRoomId) != null)
@@ -310,7 +310,7 @@ public class UserInput
                 Console.WriteLine(roomManager.SearchRoomById(searchRoomId));
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new ArgumentNullException();
         }
@@ -336,7 +336,7 @@ public class UserInput
     {
         Console.WriteLine("********* Add Room ********* ");
         Console.WriteLine("price");
-        double p = double.Parse(Console.ReadLine());
+        double p = double.Parse(Console.ReadLine()!);
         Console.WriteLine("Added room ID: " + roomManager.AddRoom(TryGetInt("TYPE ID: "), TryGetInt("STATUS ID"), p));
         Console.ReadLine();
     }
@@ -370,7 +370,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new ArgumentNullException();
         }
@@ -390,7 +390,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new ArgumentNullException();
         }
@@ -411,7 +411,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new ArgumentNullException();
         }
@@ -437,7 +437,7 @@ public class UserInput
                 Console.WriteLine("Press enter to continue...");
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Console.WriteLine("Did not exist");
             SearchEmployeeByIdInput();
@@ -458,7 +458,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             throw new ArgumentNullException();
         }
@@ -469,7 +469,7 @@ public class UserInput
     {
         Console.WriteLine("\n******* Remove a employee by Id ********\n");
         Console.WriteLine("Employee Id: ");
-        int deleteEmployeeId = int.Parse(Console.ReadLine());
+        int deleteEmployeeId = int.Parse(Console.ReadLine()!);
         employeeManager.RemoveEmployeeById(deleteEmployeeId);
         Console.WriteLine("Employee has been removed!");
         Console.ReadLine();
@@ -538,7 +538,7 @@ public class UserInput
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
 
             throw new ArgumentNullException();
@@ -550,7 +550,7 @@ public class UserInput
     {
         Console.WriteLine("\n******* Add a payment ********\n");
         Console.WriteLine("Payment date: ");
-        DateTime date = DateTime.Parse(Console.ReadLine());
+        DateTime date = DateTime.Parse(Console.ReadLine()!);
         int rId = TryGetInt("Reservation ID: ");
         int cId = TryGetInt("Customer ID: ");//may not need it in future
         double roomPay = reservationManager.CalculatingTotalRoomPay(rId);
@@ -561,7 +561,7 @@ public class UserInput
         int addedPayId = paymentManager.AddPayment(cId, date, amount, roomPay, otherPay, rId, payname, bank);
         Console.WriteLine("Payment Id: " + addedPayId);
         Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
+        string answer = Console.ReadLine()!.ToLower();
         if (answer == "y")
         {
             Console.WriteLine("\n*********** Receipt ********\n");
@@ -597,7 +597,7 @@ public class UserInput
     {
         Console.Clear();
         Console.WriteLine("Choose your option: [1]Print all payments [2]Add payment [3]Search payment by payment Id [4]Search paymment by Reservation ID [5]Remove payment");
-        string option = Console.ReadLine();
+        string option = Console.ReadLine()!;
         if (option == "1")
         {
             PrintAllPayments();
@@ -659,7 +659,7 @@ public class UserInput
                     Console.WriteLine(paymentManager.SearchPaymentByPaymentId(searchPaymentId));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new ArgumentNullException();
             }
@@ -677,7 +677,7 @@ public class UserInput
         Console.Clear();
         Console.WriteLine("********* Receipt option ********* ");
         Console.WriteLine("Do you want a receipt? Y/N");
-        string answer = Console.ReadLine().ToLower();
+        string answer = Console.ReadLine()!.ToLower();
         if (answer == "y")
         {
             Console.WriteLine("\n*********** Receipt ********\n");
@@ -941,7 +941,7 @@ public class UserInput
     {
         Console.Write(prompt);
 
-        return Console.ReadLine();
+        return Console.ReadLine()!;
     }
 
     public void NoTryMessage()
